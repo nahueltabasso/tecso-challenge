@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+	
+	<header th:replace="layout/layout :: header"></header>
+	
+	<div class="container py-4">
+
+		<h1 class="text-dark" th:text="${titulo}"></h1>
+
+		<div class="card bg-light">
+			<div class="card-header"
+				th:text="${titulo} + ' - Docente: ' + ${curso.docente.nombre} + ' ' + ${curso.docente.apellido}"></div>
+			<div class="card-body">
+				<ul class="list-group">
+					<li class="list-group-item" th:text="${curso.nombre}"></li>
+					<li class="list-group-item" th:text="${curso.descripcion}"></li>
+					<li class="list-group-item" th:text="${curso.anio}"></li>
+					<li class="list-group-item" th:text="${curso.carrera.nombre}"></li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="container py-4">
+
+		<h1 class="text-dark" th:text="'Alumnos inscriptos en ' + ${titulo}"></h1>		
+	
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Legajo</th>
+					<th>Apellido y Nombre</th>
+					<th>Carrera</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="alumno: ${curso.alumnos}">
+					<td th:text="${alumno.alumno.legajo}"></td>
+					<td th:text="${alumno.alumno.apellido} + ', ' + ${alumno.alumno.nombre}"></td>
+					<td th:text="${curso.carrera.nombre}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+	
+</body>
+
+</html>

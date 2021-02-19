@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container table-responsive-sm py-4">
+		
+		<h1 class="text-dark" th:text="${titulo}"></h1>
+				
+		<a class="btn btn-success btn-xs" th:href="@{/inscripcion-curso/completar-inscripcion}">Inscripcion a Curso</a>
+		
+		<table class="table table-striped">
+			<thead>
+ 				<tr>
+					<th>ID</th>
+					<th>Nombre Curso</th>
+					<th>Descripcion</th>
+					<th>Carrera</th>
+				</tr> 
+			</thead>
+			
+			<tbody>
+				<tr th:each="curso: ${cursos}">
+					<td><a class="btn btn-primary btn-xs" th:href="@{/detalle-curso/} + ${curso.cursoId}" th:text="${curso.cursoId}"></a></td>
+					<td th:text="${curso.nombre}"></td>
+					<td th:text="${curso.descripcion}"></td>
+					<td th:text="${curso.carrera.siglas}"></td>
+				</tr>
+			</tbody>
+		</table>	
+	</div>
+	
+	<footer th:replace="layout/layout :: footer"></footer>
+	
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container table-responsive-sm py-4">
+	<h1 class="text-dark" th:text="${titulo}"></h1>
+
+	<form th:action="@{/formulario-alumno}" th:object="${alumno}" method="post">
+		
+		<table class="table table-bordered">
+			
+			<tr>
+				<td style="width:350px;">Nombre</td>
+				<td><input type="text" th:field="*{nombre}"  class="form-control" th:errorclass="'alert-danger'"/></td>
+				<label class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></label>
+			</tr>
+			
+			<tr>
+				<td>Apellido</td>
+				<td><input type="text" th:field="*{apellido}" class="form-control" th:errorclass="'form-control alert-danger'"/></td>
+				<label class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></label>
+			</tr>
+			
+			<tr>
+				<td>Tipo Documento</td>
+				<td><input type="text" th:field="*{tipoDocumento}" class="form-control" th:errorclass="'form-control alert-danger'"/></td>
+				<label class="form-text text-danger" th:if="${#fields.hasErrors('tipoDocumento')}" th:errors="*{tipoDocumento}"></label>			
+			</tr>
+			
+			<tr>
+				<td>Numero Documento</td>
+				<td><input type="text" th:field="*{nroDocumento}" class="form-control" th:errorclass="'form-control alert-danger'"/></td>
+				<label class="form-text text-danger" th:if="${#fields.hasErrors('nroDocumento')}" th:errors="*{nroDocumento}"></label>
+			</tr>
+			
+			<tr>
+				<td>Legajo</td>
+				<td><input type="text" th:field="*{legajo}" class="form-control" /></td>
+		 		<label th:if="${#fields.hasErrors('legajo')}" class="form-control" th:errors="*{legajo}"></label>
+			</tr>
+			
+			<tr>
+				<td>Fecha Nacimiento (yyyy/mm/dd)</td>
+				<td><input type="text" th:field="*{fechaNacimiento}" class="form-control" th:errorclass="'alert-danger'"/></td>
+				<label class="form-text text-danger" th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></label>
+			</tr>
+			
+			<tr>
+				<td><input class="btn btn-primary" type="submit" value="Crear alumno" /></td>
+			</tr>
+		</table>
+		<input type="hidden" th:field="*{alumnoId}" />
+	</form>
+	</div>
+	
+	<footer th:replace="layout/layout :: footer"></footer>
+	
+</body>
+
+</html>

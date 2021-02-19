@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+
+		<div class="card">
+			<div class="card-header" th:text=${titulo}></div>
+			<div class="card body">
+
+				<form th:action="@{/inscripcion-curso/registrar-inscripcion}"	th:object="${inscripcion}" method="post">
+<!--  -->
+					<div class="input-group-prepend px-4 py-2">
+						<label class="input-group-text" for="cursoId">Alumno:</label> <select
+							class="form-control input-sm col-sm-5" id="id" name="alumnoId"
+							required="true" placeholder="">
+							<option value=""></option>
+							<option th:each="alumno: ${alumnos}"
+								th:value="${alumno.alumnoId}" th:text="${alumno.alumnoId} + ' - ' + ${alumno.apellido} + ', ' + ${alumno.nombre}"></option>
+						</select>
+					</div>	
+
+						<div class="input-group-prepend px-4 py-2">
+							<label class="input-group-text" for="cursoId"> Curso:</label> <select
+								class="form-control input-sm col-sm-5" id="id" name="cursoId"
+								required="true" placeholder="Curso">
+								<option value=""></option>
+								<option th:each="curso: ${cursos}"
+									th:value="${curso.cursoId}" th:text="${curso.nombre}"></option>
+							</select>
+
+							<div class="input-group-append px-2">
+								<button class="btn btn-outline-success px-4" type="submit">Inscribirse</button>
+							</div>
+						</div>
+				</form>
+
+			</div>
+		</div>
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+
+</html>

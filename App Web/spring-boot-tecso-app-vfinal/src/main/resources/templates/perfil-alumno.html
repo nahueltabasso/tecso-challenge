@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+
+		<h1 class="text-dark" th:text="${titulo}"></h1>
+
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+				<ul class="list-group">
+					<li class="list-group-item"
+						th:text="${alumno.nombre} + ' ' + ${alumno.apellido}"></li>
+					<li class="list-group-item"
+						th:text="${alumno.tipoDocumento} + ': ' + ${alumno.nroDocumento}"></li>
+					<li class="list-group-item" th:text="${alumno.legajo}"></li>
+					<li class="list-group-item" th:text="${alumno.fechaNacimiento}"></li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="container py-4">
+
+		<h1 class="text-dark" th:text="'Mis Carreras'"></h1>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Descripcion</th>
+					<th>Promedio</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="carrera: ${alumno.carreras}">
+					<td th:text="${carrera.nombre}"></td>
+					<td th:text="${carrera.descripcion}"></td>
+					<td th:text="${alumno.promedioCarrera}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+	<div class="container py-4">
+
+		<h1 class="text-dark" th:text="'Mis Cursos'"></h1>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>ID Curso</th>
+					<th>Nombre</th>
+					<th>Descripcion</th>
+					<th>Estado</th>
+					<th>Carrera</th>
+					<th>Docente</th>
+					<th>Nota</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="curso: ${alumno.cursos}">
+					<td th:text="${curso.curso.cursoId}"></td>
+					<td th:text="${curso.curso.nombre}"></td>
+					<td th:text="${curso.curso.descripcion}"></td>
+					<td th:text="${curso.estado}"></td>
+					<td th:text="${curso.curso.carrera.siglas}"></td>
+					<td	th:text="${curso.curso.docente.nombre} + ' ' + ${curso.curso.docente.apellido}"></td>
+					<td th:text="${curso.nota}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+ 
+	<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container table-responsive-sm py-4">
+		
+		<h1 class="text-dark" th:text="${titulo}"></h1>
+		
+		<a class="btn btn-primary btn-xs" th:href="@{/formulario-alumno}">Crear Alumno</a>
+		
+		<a class="btn btn-success btn-xs" th:href="@{/inscripcion-curso/completar-inscripcion}">Inscripcion a Curso</a>
+		
+		<table class="table table-striped">
+			<thead>
+ 				<tr>
+					<th>ID</th>
+					<th>Apellido y Nombre</th>
+					<th>Inscripcion a Curso</th>
+					<th>Editar</th>
+					<th>Eliminar</th>
+				</tr> 
+			</thead>
+			
+			<tbody>
+				<tr th:each="alumno: ${alumnos}">
+					<td><a class="btn btn-primary btn-xs" th:href="@{/perfil/} + ${alumno.alumnoId}" th:text="${alumno.alumnoId}"></a></td>
+					<td th:text="${alumno.apellido} + ', ' + ${alumno.nombre}"></td>
+					<td><a th:href="@{/}" th:text="'Inscribirse'"></a></td>
+					<td><a class="btn btn-primary btn-xs" th:href="@{/formulario-alumno/} + ${alumno.alumnoId}" th:text="'Editar'"></a></td>
+					<td><a class="btn btn-danger btn-xs" th:href="@{/eliminar/} + ${alumno.alumnoId}" th:text="'Eliminar'" onclick="return confirm('Estas seguro que quieres eliminarlo?');"></a></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+	
+	<footer th:replace="layout/layout :: footer"></footer>
+	
+</body>
+
+</html>

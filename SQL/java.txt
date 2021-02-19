@@ -1,0 +1,7 @@
+PASO 1: En el archivo adjunto encontraras un workspace-sql con un script de creación de una base de datos muy sencilla 
+(create de tablas), que deberás correr en una base de datos "PostgreSQL" 
+(te vas a tener que instalar en este caso una base de datos de este tipo o adaptar los script para correrlos en la base de datos que quieras), 
+y realizar algunas consultas ("querys")
+ sobre este modelo de base de datos según algunas consignas dadas en el segundo archivo adjuntado también en el .rar.
+
+La base de datos fue realizada con MySQL.
